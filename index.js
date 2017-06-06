@@ -34,4 +34,4 @@ class Logger {
 
 }
 
-module.exports = Logger;
+module.exports = (fmtter) => new Logger( fmtter );
