@@ -4,31 +4,32 @@ class Logger {
         this.fmtter = fmtter || null;
     }
 
-    info( ctx ) {
+    info( action, ctx ) {
         console.log( JSON.stringify( this.log( "INFO", ctx ) ) );
     }
 
-    warn( ctx ) {
+    warn( action, ctx ) {
         console.log( JSON.stringify( this.log( "WARN", ctx ) ) );
     }
 
-    error( ctx ) {
+    error( action, ctx ) {
         console.log( JSON.stringify( this.log( "ERROR", ctx ) ) );
     }
 
-    fatal( ctx ) {
+    fatal( action, ctx ) {
         console.log( JSON.stringify( this.log( "FATAL", ctx ) ) );
     }
 
-    log( level, ctx )  {
+    log( level, action, ctx )  {
 
         if( this.fmtter )
-            return this.fmtter( level, ctx );
+            return this.fmtter( level, action, ctx );
 
         return {
-            level : level,
-            ctx   : ctx,
-            ts    : new Date().getTime(),
+            level  : level,
+            ctx    : ctx || undefined,
+            action : action,
+            ts     : new Date().getTime(),
         };
     }
 
