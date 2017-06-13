@@ -5,19 +5,19 @@ class Logger {
     }
 
     info( action, ctx ) {
-        console.log( JSON.stringify( this.log( "INFO", ctx ) ) );
+        console.log( JSON.stringify( this.log( "INFO", action, ctx ) ) );
     }
 
     warn( action, ctx ) {
-        console.log( JSON.stringify( this.log( "WARN", ctx ) ) );
+        console.log( JSON.stringify( this.log( "WARN", action, ctx ) ) );
     }
 
     error( action, ctx ) {
-        console.log( JSON.stringify( this.log( "ERROR", ctx ) ) );
+        console.log( JSON.stringify( this.log( "ERROR", action, ctx ) ) );
     }
 
     fatal( action, ctx ) {
-        console.log( JSON.stringify( this.log( "FATAL", ctx ) ) );
+        console.log( JSON.stringify( this.log( "FATAL", action, ctx ) ) );
     }
 
     log( level, action, ctx )  {
