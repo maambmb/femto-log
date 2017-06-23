@@ -1,38 +1,46 @@
 class Logger {
 
-    constructor( fmtter ) {
-        this.fmtter = fmtter || null;
+    constructor( ctx ) {
+        this.ctx = ctx || null;
     }
 
-    info( action, ctx ) {
-        console.log( JSON.stringify( this.log( "INFO", action, ctx ) ) );
+    info( msg ) {
+        console.log( this.log( "INFO", msg ) );
     }
 
-    warn( action, ctx ) {
-        console.log( JSON.stringify( this.log( "WARN", action, ctx ) ) );
+    alert( msg ) {
+        console.log( this.log( "ALERT", msg ) );
     }
 
-    error( action, ctx ) {
-        console.log( JSON.stringify( this.log( "ERROR", action, ctx ) ) );
+    success( msg ) {
+        console.log( this.log( "SUCCESS", msg ) );
     }
 
-    fatal( action, ctx ) {
-        console.log( JSON.stringify( this.log( "FATAL", action, ctx ) ) );
+    warn( msg ) {
+        console.log( this.log( "WARN", msg ) );
     }
 
-    log( level, action, ctx )  {
-
-        if( this.fmtter )
-            return this.fmtter( level, action, ctx );
-
-        return {
-            level  : level,
-            ctx    : ctx || undefined,
-            action : action,
-            ts     : new Date().getTime(),
-        };
+    error( msg ) {
+        console.log( this.log( "ERROR", msg ) );
     }
+
+    fatal( msg ) {
+        console.log( this.log( "FATAL", msg ) );
+    }
+
+    log( level, msg )  {
+
+        return JSON.stringify( {
+            level : level,
+            msg   : msg,
+            ctx   : this.ctx || undefined,
+            ts    : new Date().getTime(),
+        } );
+    } 
 
 }
 
-module.exports = (fmtter) => new Logger( fmtter );
+module.exports = { 
+    default : new Logger(),
+    Logger  : Logger
+};
