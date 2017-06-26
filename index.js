@@ -29,6 +29,6 @@ class Logger {
 }
 
 module.exports = { 
-    default : new Logger(),
+    logger  : new Logger(),
     Logger  : Logger
 };
